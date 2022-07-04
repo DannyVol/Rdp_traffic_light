@@ -1,3 +1,11 @@
-from net import getport
+import time
 
-getport(3389, 1) ### searching for RDP port
+import Sys
+
+
+while True:
+    if (Sys.getActivePort(3389) == True):
+        print("true")
+    else:
+        Sys.consolUser()
+    time.sleep(2)

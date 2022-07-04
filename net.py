@@ -9,7 +9,7 @@ def getport(e, tm):
             try:
                 if (c.raddr.port == e):
                     print(c.raddr.port)
-                    print("success!")
+                    return True
                 else:
                     pass
             except AttributeError:
