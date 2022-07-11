@@ -8,7 +8,7 @@ def consolUser():
     x = psutil.users()
     for i in x:
         if (i.host == 'localhost' or 'none'):
-            return print(i.name)
+            return i.name
 
 
 #### Find if getPort is in ESTABLISHED status ####
