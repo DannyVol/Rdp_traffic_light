@@ -8,7 +8,7 @@ This project is trace RDP connactions chain and show the first client in every c
 [Docker/SqliteBrowse](https://hub.docker.com/r/linuxserver/sqlitebrowser)
 
 - Docker CLI
-- 
+
 ```console
 docker run -d \
   --name=sqlitebrowser \
