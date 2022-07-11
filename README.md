@@ -3,16 +3,18 @@
 This project is trace RDP connactions chain and show the first client in every chain.
 
 # Project components:
-- **influxdb:2.0**:
+- **Sqlite3**:
 
-[Source](https://github.com/influxdata/influxdb/tree/2.0)
+[Docker/SqliteBrowse](https://hub.docker.com/r/linuxserver/sqlitebrowser)
 
-[Dockerfile](https://github.com/influxdata/influxdata-docker/tree/influxdb-2.0/influxdb/2.0)
-
-- **influxdb:2.0 on docker**
 ```console
-docker run -p 8086:8086 \
-      influxdb:2.0
+docker run -d \
+  --name=sqlitebrowser \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -p 3000:3000 \
+  -v /path/to/config:/config \
+  lscr.io/linuxserver/sqlitebrowser:latest
 ```
 
 - **RDTL.py**:
