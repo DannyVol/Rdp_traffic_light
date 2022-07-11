@@ -1,7 +1,7 @@
 import time
-import client.Sys as Sys
+import Sys
 import socket
-import threading
+
 
 ### global state ###
 hostName = socket.gethostname()
@@ -9,10 +9,6 @@ print(hostName)
 inHostAddr = Sys.getHostAddr()
 print(inHostAddr)
 print(Sys.getOutHostAddr())
-
-### Multi threading starter ###
-def sTarter(targetX):
-    threading.Thread(target=targetX).start()
 
 def mainLogic():
     while True:
@@ -32,6 +28,6 @@ def outConn():
             print('no outbound connection')
         time.sleep(2)
 
-sTarter(mainLogic)
-sTarter(outConn)
+Sys.sTarter(mainLogic)
+Sys.sTarter(outConn)
 

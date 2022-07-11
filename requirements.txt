@@ -1,0 +1,6 @@
+sqlite3
+psutil
+time
+socket
+threading
+socket

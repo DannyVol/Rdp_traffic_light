@@ -1,6 +1,7 @@
 import psutil
 import time
 import socket
+import threading
 
 ### No RDP inbound connaction logic ###
 def consolUser():
@@ -53,3 +54,11 @@ def getOutHostAddr():
 def getRhost(addr):
     hostName = socket.gethostbyaddr(addr)
     return hostName[0]
+
+### UTILITYS ###
+
+### Multi threading starter ###
+def sTarter(targetX):
+    threading.Thread(target=targetX).start()
+    
+### TCP 
