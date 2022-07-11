@@ -17,11 +17,5 @@ docker run -d \
   lscr.io/linuxserver/sqlitebrowser:latest
 ```
 
-- **RDTL.py**:
-Program source file.
-- **Sys.py**:
-System and network modules.
-- **db.py**:
-Database querys, configuration and GUI modules.
 
 [Dependencies](https://github.com/DannyVol/Rdp_traffic_light/wiki/Dependencies)
