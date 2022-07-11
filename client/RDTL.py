@@ -1,5 +1,5 @@
 import time
-import Sys
+import client.Sys as Sys
 import socket
 import threading
 
