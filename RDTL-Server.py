@@ -1,17 +1,21 @@
-import db
 import socket
 import threading
-import django
+## import django
+## from configparser import ConfigParser # all done according to documentation and still not working
+import methods.methods as methods
 
 # basic TCP server for testing
-#
 #Variables for holding information about connections
 connections = []
 total_connections = 0
 
+# configuration files parser
+##config = ConfigParser()
+##config.read('config.cfg')
+##config['srvserver']['srvaddress']
+##srv_port = int(config['srvserver']['srvport'])
+
 #Client class, new instance created for each connected client
-#Each instance has the socket and address that is associated with items
-#Along with an assigned ID and a name chosen by the client
 class Client(threading.Thread):
     def __init__(self, socket, address, id, name, signal):
         threading.Thread.__init__(self)
@@ -55,16 +59,16 @@ def newConnections(socket):
         total_connections += 1
 
 def main():
-    #Server address def
-    srv_add = ('localhost', 12345)
-    
     #Create new server socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(srv_add)
+    sock.bind('localhost', 9833)
     sock.listen(5)
 
     #Create new thread to wait for connections
     newConnectionsThread = threading.Thread(target = newConnections, args = (sock,))
     newConnectionsThread.start()
     
-main()
+methods.sTarter(main)
+ 
+
+
