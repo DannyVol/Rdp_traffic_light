@@ -2,17 +2,16 @@ import time
 import methods.methods as methods
 import socket
 import threading
-#import configparser
+import configparser
 
 # configuration
-##config_parser = configparser.ConfigParser()
-##config_parser.read('config.cfg')
+config_parser = configparser.ConfigParser()
 
 # global state ###
 host_name = socket.gethostname()
 host_in_addr = methods.getHostAddr()
  
-    
+   
 # need to build tuple for data sending over TCP
 def mainLogic():
     while True:
@@ -48,26 +47,28 @@ def receive(socket, signal):
             signal = False
             break
         
-#Create new thread to wait for data
+# Create new thread to wait for data
 def recieive_starter():
     receiveThread = threading.Thread(target = receive, args = (sock, True))
     receiveThread.start()
-   
+
+# Initil connaction to the server   
 while True:
+    config_parser.read('config.cfg')
+    srv_ip = config_parser['SERVER']['srvaddress']
+    srv_port = int(config_parser['SERVER']['srvport'])
     #Attempt connection to server
     try:
-#        srv_ip = config_parser['SERVER']['adrress']
-#        srv_port = int(config_parser['SERVER']['Port'])
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.connect('localhost', 9833)
-        recieive_starter()
-        methods.sTarter(mainLogic)
-        methods.sTarter(outConn)    
-
+        sock.connect((srv_ip, srv_port))
     except:
         print("Could not make a connection to the server")
         time.sleep(1)
-
-
+    else:
+        # Start threads
+        recieive_starter()
+        methods.sTarter(mainLogic)
+        methods.sTarter(outConn)
+        break
 
 

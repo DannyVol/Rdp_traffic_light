@@ -1,7 +1,7 @@
 import socket
 import threading
 ## import django
-## from configparser import ConfigParser # all done according to documentation and still not working
+from configparser import ConfigParser # all done according to documentation and still not working
 import methods.methods as methods
 
 # basic TCP server for testing
@@ -10,10 +10,10 @@ connections = []
 total_connections = 0
 
 # configuration files parser
-##config = ConfigParser()
-##config.read('config.cfg')
-##config['srvserver']['srvaddress']
-##srv_port = int(config['srvserver']['srvport'])
+config = ConfigParser()
+config.read('config.cfg')
+srv_ip = config['SERVER']['srvaddress']
+srv_port = int(config['SERVER']['srvport'])
 
 #Client class, new instance created for each connected client
 class Client(threading.Thread):
@@ -60,8 +60,10 @@ def newConnections(socket):
 
 def main():
     #Create new server socket
+    srv = (srv_ip, srv_port)
+    print(srv)
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind('localhost', 9833)
+    sock.bind(srv)
     sock.listen(5)
 
     #Create new thread to wait for connections
