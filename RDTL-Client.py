@@ -48,7 +48,7 @@ def receive(socket, signal):
             break
         
 # Create new thread to wait for data
-def recieive_starter():
+def receive_starter():
     receiveThread = threading.Thread(target = receive, args = (sock, True))
     receiveThread.start()
 
@@ -66,7 +66,7 @@ while True:
         time.sleep(1)
     else:
         # Start threads
-        recieive_starter()
+        receive_starter()
         methods.sTarter(mainLogic)
         methods.sTarter(outConn)
         break
